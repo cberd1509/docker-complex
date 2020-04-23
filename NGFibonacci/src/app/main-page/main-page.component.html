@@ -1,0 +1,46 @@
+<form [formGroup]="indexForm">
+  <div class="form-group">
+    <label>Enter your Index</label>
+    <input type="text" formControlName="index" class="form-control" />
+  </div>
+  <button type="button" (click)="submitIndex()" class="btn btn-primary" [disabled]="!indexForm.valid">
+    Submit
+  </button>
+</form>
+
+<div class="row mt-3" *ngIf="values && seenIndexes">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        Indexes that i've seen
+      </div>
+      <div class="card-body">
+        <ul class="list-group">
+          <li
+            *ngFor="let index of seenIndexes"
+            class="list-group-item list-group-item-action"
+          >
+            {{ index.number }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        Index and Values executed
+      </div>
+      <div class="card-body">
+        <ul class="list-group">
+          <li
+            *ngFor="let val of values"
+            class="list-group-item list-group-item-action"
+          >
+            For index <b>{{ val.key }}</b> calculated <b>{{val.value}}</b>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
