@@ -2,7 +2,7 @@ services:
   - docker
 
 language: nodejs
-dist: xenial
+dist: trusty
 os: linux
 
 addons:
@@ -12,7 +12,7 @@ before_install:
   - docker build -t cberd1509/ngfibonacci -f ./NGFibonacci/Dockerfile.dev ./NGFibonacci
 
 script:
-  - export CHROME_BIN=/usr/bin/google-chrome
+  #- export CHROME_BIN=/usr/bin/google-chrome
   - docker run cberd1509/ngfibonacci npm run test
 
 after_success:
