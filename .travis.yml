@@ -1,0 +1,28 @@
+services:
+  - docker
+
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
+before_install:
+  - docker build -t cberd1509/ngfibonacci -f ./NGFibonacci/Dockerfile.dev ./NGFibonacci
+
+script:
+  - docker run cberd1509/ngfibonacci npm run test
+
+after_success:
+  - docker build -t cberd1509/multi-ngfibonacci ./NGFibonacci
+  - docker build -t cberd1509/multi-nginx ./nginx
+  - docker build -t cberd1509/multi-server ./Server
+  - docker build -t cberd1509/multi-worker ./RedisWorker
+  #Login to Docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USER" --password-stdin
+  #Image Pushing
+  - docker push cberd1509/multi-ngfibonacci
+  - docker push cberd1509/multi-nginx
+  - docker push cberd1509/multi-server
+  - docker push cberd1509/multi-worker
