@@ -1,11 +1,16 @@
 services:
   - docker
 
+language: nodejs
+dist: xenial
+os: linux
+
 addons:
   chrome: stable
-  
+
 before_install:
   - docker build -t cberd1509/ngfibonacci -f ./NGFibonacci/Dockerfile.dev ./NGFibonacci
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 script:
   - docker run cberd1509/ngfibonacci npm run test
