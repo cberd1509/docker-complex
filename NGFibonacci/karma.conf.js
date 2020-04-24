@@ -25,11 +25,11 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['Chrome_without_sandbox'],
     customLaunchers: {
-      ChromeHeadlessNoSandbox: {
+      Chrome_without_sandbox: {
         base: 'ChromeHeadless',
-        flags: ['--no-sandbox']
+        flags: ['--no-sandbox'] // with sandbox it fails under Docker
       }
     },
     singleRun: false,
