@@ -5,12 +5,8 @@ language: nodejs
 dist: trusty
 os: linux
 
-addons:
-  chrome: stable
-
 before_install:
   - docker build -t cberd1509/ngfibonacci -f ./NGFibonacci/Dockerfile.dev ./NGFibonacci
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 script:
   #- export CHROME_BIN=/usr/bin/google-chrome
