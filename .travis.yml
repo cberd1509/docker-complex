@@ -2,12 +2,8 @@ services:
   - docker
 
 addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
-
+  chrome: stable
+  
 before_install:
   - docker build -t cberd1509/ngfibonacci -f ./NGFibonacci/Dockerfile.dev ./NGFibonacci
 
