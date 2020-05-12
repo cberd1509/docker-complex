@@ -1,0 +1,33 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [{
+            "name": "client",
+            "image": "cberd1509/multi-ngfibonacci",
+            "hostname": "client",
+            "essential": false
+        },
+        {
+            "name": "server",
+            "image": "cberd1509/multi-server",
+            "hostname": "api",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "cberd1509/multi-worker",
+            "hostname": "worker",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "cberd1509/multi-nginx",
+            "hostname": "nginx",
+            "essential": "true",
+            "portMappings": [{
+                "hostPort": "80",
+                "containerPort": "80"
+            }],
+            "links": ["client", "server"]
+        }
+    ]
+}
